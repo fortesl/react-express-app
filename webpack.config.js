@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: './src/app/playground/app.js', // path.resolve(__dirname, 'src', 'app'),
+    entry: path.resolve(__dirname, 'src', 'app'),
     output: {
         //eslint-disable-next-line no-undef
         path: path.resolve(__dirname, 'dist'),
