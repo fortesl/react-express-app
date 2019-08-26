@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: path.resolve(__dirname, 'src', 'app'),
+    entry: './src/app/playground/app.js', //path.resolve(__dirname, 'src', 'app'),
     output: {
         //eslint-disable-next-line no-undef
         path: path.resolve(__dirname, 'dist'),
@@ -19,6 +19,9 @@ module.exports = {
         rules: [ {
             test: /\.jsx?/,
             loader: 'babel-loader'
+        }, {
+            test: /\.(s*)css$/,
+            use: ['style-loader', 'css-loader', 'sass-loader']
         }]
     }
 };

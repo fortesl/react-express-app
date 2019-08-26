@@ -1,21 +1,30 @@
+import 'react-dates/initialize';
 import configureStore from './store/configureStore';
-import { addExpense } from './actions/expenses';
-import { setTextFilter } from './actions/filters';
 import {Provider} from 'react-redux';
-import ExpenseList from './components/ExpenseList';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ExpenseDashboardPage from './components/ExpenseDashboardPage';
+import AddExpensePage from './components/AddExpensePage';
+import EditExpensePage from './components/EditExpensePage';
+import initData from './store/demoData';
+import { Router, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import Navigation from './components/Navigation';
+import HelloWorld from './components/Hello';
 
 const store = configureStore();
+initData(store);
 
-store.dispatch(addExpense({description: 'Water Bill', note: 'August 2019 water bill', amount: 12000}));
-store.dispatch(addExpense({description: 'Gas Bill', note: 'August 2019 gas bill', amount: 6500}));
-store.dispatch(setTextFilter('water'));
 
 const jsx = (
-    <Provider store={store}>
-        <ExpenseList info="prop not from state"/>
-    </Provider>
+    <Router history={createBrowserHistory()}>
+        <Provider store={store}>
+            <Navigation />
+            <Route exact path="/" component={HelloWorld} />
+            <Route path="/dashboard" component={ExpenseDashboardPage} />
+            <Route path="/create" render={()=> <AddExpensePage />} />
+        </Provider>
+    </Router>
 );
 
 ReactDOM.render(jsx, document.getElementById('app'));

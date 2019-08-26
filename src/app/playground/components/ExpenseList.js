@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
+import ExpenseListItem from './ExpenseListItem';
+import selectedExpenses from '../selectors/expenses';
 
 const ExpenseList = (props) => ( 
     <div>
@@ -11,13 +13,9 @@ const ExpenseList = (props) => (
             </thead>
             <tbody>
                 { 
-                    props.expenses.map((expense, index) => 
-                        <tr key={index}>
-                            <td>{new Date(expense.createdAt).getMonth()+1}/{new Date(expense.createdAt).getDate()}</td>
-                            <td>{expense.description}</td>
-                            <td>${expense.amount/100}</td>
-                            <td>{expense.note}</td>
-                        </tr>)
+                    props.expenses.map((expense) => 
+                        <ExpenseListItem key={expense.id} expense={expense} />
+                    )
                 }
             </tbody>
         </table>
@@ -25,13 +23,12 @@ const ExpenseList = (props) => (
 );
 
 ExpenseList.propTypes = {
-    expenses: propTypes.array,
-    info: propTypes.string
+    expenses: propTypes.array
 };
 
 const mapStateToProps = (state) => {
     return {
-        expenses: state.expenses
+        expenses: selectedExpenses(state.expenses, state.filters)
     };
 };
 
