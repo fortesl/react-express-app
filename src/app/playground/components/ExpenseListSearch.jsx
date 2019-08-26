@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { setTextFilter } from '../actions/filters';
 
-const ExpenseListFilters = (props) => ( 
+const ExpenseListSearch = (props) => ( 
     <div>
-        <input type="text" placeholder="filter by:" value={props.filters.text} 
+        <input type="text" placeholder="Search" value={props.filters.text} 
             onChange={(e) => props.dispatch(setTextFilter(e.target.value)) } />
     </div>
 );
     
-ExpenseListFilters.propTypes = {
+ExpenseListSearch.propTypes = {
     filters: propTypes.object,
     dispatch: propTypes.func
 };
@@ -21,4 +21,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(ExpenseListFilters);
+export default connect(mapStateToProps)(ExpenseListSearch);

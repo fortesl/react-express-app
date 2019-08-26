@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { sortByDate, sortByAmount } from '../actions/filters';
 
-const ExpenseListSorting = (props) => ( 
+const ExpenseListSort = (props) => ( 
     <div>
         Sort by: {' '}
         <select 
@@ -19,7 +19,7 @@ const ExpenseListSorting = (props) => (
     </div>
 );
     
-ExpenseListSorting.propTypes = {
+ExpenseListSort.propTypes = {
     dispatch: propTypes.func,
     filters: propTypes.object
 };
@@ -30,4 +30,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(ExpenseListSorting);
+export default connect(mapStateToProps)(ExpenseListSort);
