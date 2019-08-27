@@ -11,21 +11,27 @@ class ExpenseListRange extends React.Component {
         this.state = {
             startDate: props.startDate,
             endDate: props.endDate,
-            focusedInput: false
+            focusedInput: null
         };
     }
+
+    onDateChange = ( { startDate, endDate }) => {
+        this.props.dispatch(setStartDate(startDate));
+        this.props.dispatch(setEndDate(endDate));
+    };
+
+    onFocusChange = (focusedInput) => this.setState({ focusedInput });
+
     render() {
         return ( 
             <DateRangePicker 
                 startDate= {this.props.startDate}
                 endDate= {this.props.endDate}
-                onDatesChange={({ startDate, endDate}) => {
-                    this.setState({ startDate, endDate });
-                    this.props.dispatch(setStartDate(startDate));
-                    this.props.dispatch(setEndDate(endDate));
-                }}
+                onDatesChange={this.onDateChange}
                 focusedInput={this.state.focusedInput}
-                onFocusChange={focusedInput => this.setState({ focusedInput })}
+                onFocusChange={this.onFocusChange}
+                numberOfMonths={1}
+                showClearDates={true}
                 isOutsideRange={() => false}
             />
         );    
