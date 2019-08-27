@@ -33,6 +33,8 @@ class ExpenseListRange extends React.Component {
                 numberOfMonths={1}
                 showClearDates={true}
                 isOutsideRange={() => false}
+                startDateId="start"
+                endDateId="end"
             />
         );    
     }

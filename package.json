@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "fix": "eslint . --fix",
-    "start": "npm run lint && webpack",
+    "build:dev": "npm run lint && webpack --env development",
+    "build:prod": "npm run lint && webpack -p --env production",
     "dev": "webpack-dev-server --open"
   },
   "keywords": [],
@@ -33,7 +34,6 @@
     "style-loader": "^1.0.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.6",
-    "webpack-command": "^0.4.2",
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
