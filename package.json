@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "fix": "eslint . --fix",
-    "build:dev": "npm run lint && webpack --env development",
-    "build:prod": "npm run lint && webpack -p --env production",
-    "dev": "webpack-dev-server --open"
+    "build:dev": "npm run lint && webpack",
+    "build:prod": "npm run lint && webpack -p --config ./webpack-prod.config.js",
+    "dev": "webpack-dev-server --open  --progress --colors"
   },
   "keywords": [],
   "author": "",
@@ -28,12 +28,14 @@
     "css-loader": "^3.2.0",
     "eslint": "^6.2.1",
     "eslint-plugin-react": "^7.14.3",
+    "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "nodemon": "^1.19.1",
     "sass-loader": "^7.3.1",
     "style-loader": "^1.0.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.6",
+    "webpack-command": "^0.5.0",
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
