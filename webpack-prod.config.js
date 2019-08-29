@@ -7,14 +7,11 @@ module.exports =  {
     entry: './src/app/playground/app.js', //path.resolve(__dirname, 'src', 'app'),
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
+        filename: '[name].js',
         publicPath: '/'
     },
     resolve: {
         extensions: ['.js', '.jsx']
-    },
-    devServer: {
-        historyApiFallback: true
     },
     devtool: 'source-map',
     plugins: [
@@ -26,15 +23,22 @@ module.exports =  {
     ],    
     module: {
         rules: [ {
-            test: /\.jsx?/,
-            loader: 'babel-loader'
+            'test': /\.(js|jsx)$/,
+            'exclude': /node_modules/,
+            'use': {
+                'loader': 'babel-loader',
+                'options': {
+                    'presets': [
+                        '@babel/env',
+                        '@babel/react'
+                    ]
+                }
+            }
         }, 
         {
             test: /\.(s*)css$/,
             use: [
-                {
-                    loader: MiniCssExtractPlugin.loader
-                },
+                MiniCssExtractPlugin.loader,
                 'css-loader', 
                 'sass-loader'
             ]
